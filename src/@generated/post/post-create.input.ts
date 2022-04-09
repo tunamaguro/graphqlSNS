@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { UserCreateNestedOneWithoutPostInput } from '../user/user-create-nested-one-without-post.input';
+import { UserCreateNestedOneWithoutPostsInput } from '../user/user-create-nested-one-without-posts.input';
 
 @InputType()
 export class PostCreateInput {
@@ -11,8 +11,8 @@ export class PostCreateInput {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => UserCreateNestedOneWithoutPostInput, {nullable:true})
-    user?: UserCreateNestedOneWithoutPostInput;
+    @Field(() => UserCreateNestedOneWithoutPostsInput, {nullable:true})
+    user?: UserCreateNestedOneWithoutPostsInput;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

@@ -13,5 +13,5 @@ export class UserUncheckedUpdateInput {
     name?: StringFieldUpdateOperationsInput;
 
     @Field(() => PostUncheckedUpdateManyWithoutUserInput, {nullable:true})
-    Post?: PostUncheckedUpdateManyWithoutUserInput;
+    posts?: PostUncheckedUpdateManyWithoutUserInput;
 }

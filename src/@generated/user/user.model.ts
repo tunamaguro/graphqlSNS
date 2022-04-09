@@ -14,7 +14,7 @@ export class User {
     name!: string;
 
     @Field(() => [Post], {nullable:true})
-    Post?: Array<Post>;
+    posts?: Array<Post>;
 
     @Field(() => UserCount, {nullable:false})
     _count?: UserCount;

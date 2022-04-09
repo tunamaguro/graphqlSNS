@@ -12,5 +12,5 @@ export class UserCreateInput {
     name!: string;
 
     @Field(() => PostCreateNestedManyWithoutUserInput, {nullable:true})
-    Post?: PostCreateNestedManyWithoutUserInput;
+    posts?: PostCreateNestedManyWithoutUserInput;
 }

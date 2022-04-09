@@ -22,5 +22,5 @@ export class UserWhereInput {
     name?: StringFilter;
 
     @Field(() => PostListRelationFilter, {nullable:true})
-    Post?: PostListRelationFilter;
+    posts?: PostListRelationFilter;
 }

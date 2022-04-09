@@ -13,5 +13,5 @@ export class UserOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => PostOrderByRelationAggregateInput, {nullable:true})
-    Post?: PostOrderByRelationAggregateInput;
+    posts?: PostOrderByRelationAggregateInput;
 }

@@ -12,5 +12,5 @@ export class UserUncheckedCreateInput {
     name!: string;
 
     @Field(() => PostUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
-    Post?: PostUncheckedCreateNestedManyWithoutUserInput;
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput;
 }
