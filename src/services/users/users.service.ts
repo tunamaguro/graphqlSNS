@@ -16,6 +16,20 @@ export class UsersService {
     return this.prisma.user.findMany(args);
   }
 
+  async _count(args: FindUniqueUserArgs) {
+    const data = await this.prisma.user.findUnique({
+      ...args,
+      select: {
+        _count: {
+          select: {
+            posts: true,
+          },
+        },
+      },
+    });
+    return data._count;
+  }
+
   async createUser(args: CreateOneUserArgs) {
     return this.prisma.user.create(args);
   }
