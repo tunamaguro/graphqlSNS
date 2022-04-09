@@ -17,13 +17,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type UserCount {
-  Post: Int!
+  posts: Int!
 }
 
 type User {
   id: ID!
   name: String!
-  Post: [Post!]
+  posts: [Post!]
   _count: UserCount!
 }
 
@@ -44,7 +44,7 @@ input UserWhereInput {
   NOT: [UserWhereInput!]
   id: StringFilter
   name: StringFilter
-  Post: PostListRelationFilter
+  posts: PostListRelationFilter
 }
 
 input StringFilter {
@@ -158,7 +158,7 @@ input NestedDateTimeFilter {
 input UserOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
-  Post: PostOrderByRelationAggregateInput
+  posts: PostOrderByRelationAggregateInput
 }
 
 enum SortOrder {
@@ -204,7 +204,7 @@ type Mutation {
 input UserCreateInput {
   id: String
   name: String!
-  Post: PostCreateNestedManyWithoutUserInput
+  posts: PostCreateNestedManyWithoutUserInput
 }
 
 input PostCreateNestedManyWithoutUserInput {
@@ -241,23 +241,23 @@ input PostCreateManyUserInput {
 input PostCreateInput {
   id: String
   content: String!
-  user: UserCreateNestedOneWithoutPostInput
+  user: UserCreateNestedOneWithoutPostsInput
   createdAt: DateTime
   updatedAt: DateTime
 }
 
-input UserCreateNestedOneWithoutPostInput {
-  create: UserCreateWithoutPostInput
-  connectOrCreate: UserCreateOrConnectWithoutPostInput
+input UserCreateNestedOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutPostInput {
+input UserCreateWithoutPostsInput {
   id: String
   name: String!
 }
 
-input UserCreateOrConnectWithoutPostInput {
+input UserCreateOrConnectWithoutPostsInput {
   where: UserWhereUniqueInput!
-  create: UserCreateWithoutPostInput!
+  create: UserCreateWithoutPostsInput!
 }
