@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { HideField } from '@nestjs/graphql';
 import { PostUpdateManyWithoutUserInput } from '../post/post-update-many-without-user.input';
+import { CommentUpdateManyWithoutUserInput } from '../comment/comment-update-many-without-user.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -15,4 +16,7 @@ export class UserUpdateInput {
 
     @Field(() => PostUpdateManyWithoutUserInput, {nullable:true})
     posts?: PostUpdateManyWithoutUserInput;
+
+    @Field(() => CommentUpdateManyWithoutUserInput, {nullable:true})
+    comments?: CommentUpdateManyWithoutUserInput;
 }

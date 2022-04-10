@@ -7,4 +7,7 @@ export class UserCount {
 
     @Field(() => Int, {nullable:false})
     posts?: number;
+
+    @Field(() => Int, {nullable:false})
+    comments?: number;
 }
