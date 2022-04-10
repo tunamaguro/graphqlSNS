@@ -16,16 +16,20 @@ datasource db {
 }
 
 model User {
+  /// @HideField({ match:'*@(Create|Update)*Input' })
   id    String @id @default(uuid())
   name  String
   posts Post[]
 }
 
 model Post {
+  /// @HideField({ match:'*@(Create|Update)*Input' })
   id        String   @id @default(uuid())
   content   String
   userId    String?
   user      User?    @relation(fields: [userId], references: [id])
+  /// @HideField({ match:'*@(Create|Update)*Input' })
   createdAt DateTime @default(now())
+  /// @HideField({ match:'*@(Create|Update)*Input' })
   updatedAt DateTime @updatedAt
 }

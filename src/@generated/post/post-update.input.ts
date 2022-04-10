@@ -1,13 +1,14 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
+import { HideField } from '@nestjs/graphql';
 import { UserUpdateOneWithoutPostsInput } from '../user/user-update-one-without-posts.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
 export class PostUpdateInput {
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     id?: StringFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
@@ -16,9 +17,9 @@ export class PostUpdateInput {
     @Field(() => UserUpdateOneWithoutPostsInput, {nullable:true})
     user?: UserUpdateOneWithoutPostsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: DateTimeFieldUpdateOperationsInput;
 }
