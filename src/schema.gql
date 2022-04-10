@@ -198,11 +198,12 @@ enum PostScalarFieldEnum {
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
 }
 
 input UserCreateInput {
-  id: String
   name: String!
   posts: PostCreateNestedManyWithoutUserInput
 }
@@ -215,10 +216,7 @@ input PostCreateNestedManyWithoutUserInput {
 }
 
 input PostCreateWithoutUserInput {
-  id: String
   content: String!
-  createdAt: DateTime
-  updatedAt: DateTime
 }
 
 input PostCreateOrConnectWithoutUserInput {
@@ -232,18 +230,70 @@ input PostCreateManyUserInputEnvelope {
 }
 
 input PostCreateManyUserInput {
-  id: String
   content: String!
-  createdAt: DateTime
-  updatedAt: DateTime
+}
+
+input UserUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutUserInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input PostUpdateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [PostScalarWhereInput!]
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutUserInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostUpdateWithoutUserInput {
+  content: StringFieldUpdateOperationsInput
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutUserInput!
+}
+
+input PostUpdateManyWithWhereWithoutUserInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyMutationInput!
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+  id: StringFilter
+  content: StringFilter
+  userId: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input PostUpdateManyMutationInput {
+  content: StringFieldUpdateOperationsInput
 }
 
 input PostCreateInput {
-  id: String
   content: String!
   user: UserCreateNestedOneWithoutPostsInput
-  createdAt: DateTime
-  updatedAt: DateTime
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -253,11 +303,34 @@ input UserCreateNestedOneWithoutPostsInput {
 }
 
 input UserCreateWithoutPostsInput {
-  id: String
   name: String!
 }
 
 input UserCreateOrConnectWithoutPostsInput {
   where: UserWhereUniqueInput!
   create: UserCreateWithoutPostsInput!
+}
+
+input PostUpdateInput {
+  content: StringFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutPostsInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  upsert: UserUpsertWithoutPostsInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutPostsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserUpdateWithoutPostsInput {
+  name: StringFieldUpdateOperationsInput
 }

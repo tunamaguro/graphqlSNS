@@ -10,6 +10,7 @@ import {
 import { CreateOneUserArgs } from 'src/@generated/user/create-one-user.args';
 import { FindManyUserArgs } from 'src/@generated/user/find-many-user.args';
 import { FindUniqueUserArgs } from 'src/@generated/user/find-unique-user.args';
+import { UpdateOneUserArgs } from 'src/@generated/user/update-one-user.args';
 import { UserCount } from 'src/@generated/user/user-count.output';
 import { User } from 'src/@generated/user/user.model';
 import { PostsService } from 'src/services/posts/posts.service';
@@ -32,11 +33,6 @@ export class UsersResolver {
     return this.userService.findAll(args);
   }
 
-  @Mutation(() => User)
-  createUser(@Args() args: CreateOneUserArgs) {
-    return this.userService.createUser(args);
-  }
-
   @ResolveField(() => [Post])
   posts(@Parent() user: User) {
     const { id } = user;
@@ -57,5 +53,15 @@ export class UsersResolver {
         id,
       },
     });
+  }
+
+  @Mutation(() => User)
+  createUser(@Args() args: CreateOneUserArgs) {
+    return this.userService.createUser(args);
+  }
+
+  @Mutation(() => User)
+  updateUser(@Args() args: UpdateOneUserArgs) {
+    return this.userService.updateUser(args);
   }
 }

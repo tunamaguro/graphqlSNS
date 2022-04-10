@@ -10,6 +10,7 @@ import { CreateOnePostArgs } from 'src/@generated/post/create-one-post.args';
 import { FindManyPostArgs } from 'src/@generated/post/find-many-post.args';
 import { FindUniquePostArgs } from 'src/@generated/post/find-unique-post.args';
 import { Post } from 'src/@generated/post/post.model';
+import { UpdateOnePostArgs } from 'src/@generated/post/update-one-post.args';
 import { PostsService } from 'src/services/posts/posts.service';
 import { UsersService } from 'src/services/users/users.service';
 
@@ -30,16 +31,20 @@ export class PostsResolver {
     return this.postService.findAll(args);
   }
 
-  @Mutation(() => Post)
-  createPost(@Args() args: CreateOnePostArgs) {
-    return this.postService.createPost(args);
-  }
-
   @ResolveField()
   user(@Parent() post: Post) {
     const { userId } = post;
     return this.userService.findUnique({
       where: { id: userId },
     });
+  }
+  @Mutation(() => Post)
+  createPost(@Args() args: CreateOnePostArgs) {
+    return this.postService.createPost(args);
+  }
+
+  @Mutation(() => Post)
+  updatePost(@Args() args: UpdateOnePostArgs) {
+    return this.postService.updatePost(args);
   }
 }

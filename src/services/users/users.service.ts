@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma.service';
 import { FindManyUserArgs } from 'src/@generated/user/find-many-user.args';
 import { CreateOneUserArgs } from 'src/@generated/user/create-one-user.args';
 import { FindUniqueUserArgs } from 'src/@generated/user/find-unique-user.args';
+import { UpdateOneUserArgs } from 'src/@generated/user/update-one-user.args';
 
 @Injectable()
 export class UsersService {
@@ -32,5 +33,9 @@ export class UsersService {
 
   async createUser(args: CreateOneUserArgs) {
     return this.prisma.user.create(args);
+  }
+
+  async updateUser(args: UpdateOneUserArgs) {
+    return this.prisma.user.update(args);
   }
 }

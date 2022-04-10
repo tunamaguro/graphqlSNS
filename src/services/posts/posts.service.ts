@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateOnePostArgs } from 'src/@generated/post/create-one-post.args';
 import { FindManyPostArgs } from 'src/@generated/post/find-many-post.args';
 import { FindUniquePostArgs } from 'src/@generated/post/find-unique-post.args';
+import { UpdateOnePostArgs } from 'src/@generated/post/update-one-post.args';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
@@ -16,5 +17,9 @@ export class PostsService {
 
   async createPost(args: CreateOnePostArgs) {
     return this.prisma.post.create(args);
+  }
+
+  async updatePost(args: UpdateOnePostArgs) {
+    return this.prisma.post.update(args);
   }
 }
