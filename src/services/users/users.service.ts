@@ -24,6 +24,7 @@ export class UsersService {
         _count: {
           select: {
             posts: true,
+            comments: true,
           },
         },
       },

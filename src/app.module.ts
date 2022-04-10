@@ -9,6 +9,8 @@ import { UsersService } from './services/users/users.service';
 import { PostsService } from './services/posts/posts.service';
 import { UsersResolver } from './resolvers/users/users.resolver';
 import { PostsResolver } from './resolvers/posts/posts.resolver';
+import { CommentService } from './services/comment/comment.service';
+import { CommentResolver } from './resolvers/comment/comment.resolver';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { PostsResolver } from './resolvers/posts/posts.resolver';
     PostsService,
     UsersResolver,
     PostsResolver,
+    CommentService,
+    CommentResolver,
   ],
 })
 export class AppModule {}

@@ -22,4 +22,17 @@ export class PostsService {
   async updatePost(args: UpdateOnePostArgs) {
     return this.prisma.post.update(args);
   }
+
+  async _count(args: FindUniquePostArgs) {
+    return this.prisma.post.findUnique({
+      ...args,
+      include: {
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
+      },
+    });
+  }
 }
