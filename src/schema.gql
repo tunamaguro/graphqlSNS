@@ -1,0 +1,646 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserCount {
+  posts: Int!
+  comments: Int!
+}
+
+type User {
+  id: ID!
+  name: String!
+  posts(where: PostWhereInput, orderBy: [PostOrderByWithRelationInput!], cursor: PostWhereUniqueInput, take: Int, skip: Int, distinct: [PostScalarFieldEnum!]): [Post!]
+  comments(where: CommentWhereInput, orderBy: [CommentOrderByWithRelationInput!], cursor: CommentWhereUniqueInput, take: Int, skip: Int, distinct: [CommentScalarFieldEnum!]): [Comment!]
+  _count: UserCount!
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  id: StringFilter
+  content: StringFilter
+  userId: StringNullableFilter
+  user: UserRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  comments: CommentListRelationFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  posts: PostListRelationFilter
+  comments: CommentListRelationFilter
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  some: PostWhereInput
+  none: PostWhereInput
+}
+
+input CommentListRelationFilter {
+  every: CommentWhereInput
+  some: CommentWhereInput
+  none: CommentWhereInput
+}
+
+input CommentWhereInput {
+  AND: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+  id: StringFilter
+  content: StringFilter
+  postId: StringFilter
+  post: PostRelationFilter
+  userId: StringNullableFilter
+  user: UserRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input PostRelationFilter {
+  is: PostWhereInput
+  isNot: PostWhereInput
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input PostOrderByWithRelationInput {
+  id: SortOrder
+  content: SortOrder
+  userId: SortOrder
+  user: UserOrderByWithRelationInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  comments: CommentOrderByRelationAggregateInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  posts: PostOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
+}
+
+input PostOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CommentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input PostWhereUniqueInput {
+  id: String
+}
+
+enum PostScalarFieldEnum {
+  id
+  content
+  userId
+  createdAt
+  updatedAt
+}
+
+input CommentOrderByWithRelationInput {
+  id: SortOrder
+  content: SortOrder
+  postId: SortOrder
+  post: PostOrderByWithRelationInput
+  userId: SortOrder
+  user: UserOrderByWithRelationInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
+}
+
+input CommentWhereUniqueInput {
+  id: String
+}
+
+enum CommentScalarFieldEnum {
+  id
+  content
+  postId
+  userId
+  createdAt
+  updatedAt
+}
+
+type PostCount {
+  comments: Int!
+}
+
+type Post {
+  id: ID!
+  content: String!
+  userId: String
+  user: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  comments(where: CommentWhereInput, orderBy: [CommentOrderByWithRelationInput!], cursor: CommentWhereUniqueInput, take: Int, skip: Int, distinct: [CommentScalarFieldEnum!]): [Comment!]
+  _count: PostCount!
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  postId: String!
+  post: Post!
+  userId: String
+  user: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User]!
+  post(where: PostWhereUniqueInput!): Post!
+  posts(where: PostWhereInput, orderBy: [PostOrderByWithRelationInput!], cursor: PostWhereUniqueInput, take: Int, skip: Int, distinct: [PostScalarFieldEnum!]): [Post!]!
+  comment(where: CommentWhereUniqueInput!): Comment!
+  comments(where: CommentWhereInput, orderBy: [CommentOrderByWithRelationInput!], cursor: CommentWhereUniqueInput, take: Int, skip: Int, distinct: [CommentScalarFieldEnum!]): [Comment!]!
+}
+
+input UserWhereUniqueInput {
+  id: String
+}
+
+enum UserScalarFieldEnum {
+  id
+  name
+}
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
+  createComment(data: CommentCreateInput!): Comment!
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment!
+}
+
+input UserCreateInput {
+  name: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
+}
+
+input PostCreateNestedManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateWithoutUserInput {
+  content: String!
+  comments: CommentCreateNestedManyWithoutPostInput
+}
+
+input CommentCreateNestedManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutPostInput!]
+  createMany: CommentCreateManyPostInputEnvelope
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateWithoutPostInput {
+  content: String!
+  user: UserCreateNestedOneWithoutCommentsInput
+}
+
+input UserCreateNestedOneWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutCommentsInput {
+  name: String!
+  posts: PostCreateNestedManyWithoutUserInput
+}
+
+input UserCreateOrConnectWithoutCommentsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutCommentsInput!
+}
+
+input CommentCreateOrConnectWithoutPostInput {
+  where: CommentWhereUniqueInput!
+  create: CommentCreateWithoutPostInput!
+}
+
+input CommentCreateManyPostInputEnvelope {
+  data: [CommentCreateManyPostInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyPostInput {
+  content: String!
+  userId: String
+}
+
+input PostCreateOrConnectWithoutUserInput {
+  where: PostWhereUniqueInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostCreateManyUserInputEnvelope {
+  data: [PostCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input PostCreateManyUserInput {
+  content: String!
+}
+
+input CommentCreateNestedManyWithoutUserInput {
+  create: [CommentCreateWithoutUserInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
+  createMany: CommentCreateManyUserInputEnvelope
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateWithoutUserInput {
+  content: String!
+  post: PostCreateNestedOneWithoutCommentsInput!
+}
+
+input PostCreateNestedOneWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  connectOrCreate: PostCreateOrConnectWithoutCommentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostCreateWithoutCommentsInput {
+  content: String!
+  user: UserCreateNestedOneWithoutPostsInput
+}
+
+input UserCreateNestedOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutPostsInput {
+  name: String!
+  comments: CommentCreateNestedManyWithoutUserInput
+}
+
+input UserCreateOrConnectWithoutPostsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input PostCreateOrConnectWithoutCommentsInput {
+  where: PostWhereUniqueInput!
+  create: PostCreateWithoutCommentsInput!
+}
+
+input CommentCreateOrConnectWithoutUserInput {
+  where: CommentWhereUniqueInput!
+  create: CommentCreateWithoutUserInput!
+}
+
+input CommentCreateManyUserInputEnvelope {
+  data: [CommentCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyUserInput {
+  content: String!
+  postId: String!
+}
+
+input UserUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input PostUpdateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [PostScalarWhereInput!]
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutUserInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostUpdateWithoutUserInput {
+  content: StringFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input CommentUpdateManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutPostInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutPostInput!]
+  createMany: CommentCreateManyPostInputEnvelope
+  set: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutPostInput!]
+  deleteMany: [CommentScalarWhereInput!]
+}
+
+input CommentUpsertWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutPostInput!
+  create: CommentCreateWithoutPostInput!
+}
+
+input CommentUpdateWithoutPostInput {
+  content: StringFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutCommentsInput
+}
+
+input UserUpdateOneWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  upsert: UserUpsertWithoutCommentsInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutCommentsInput
+}
+
+input UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsInput!
+  create: UserCreateWithoutCommentsInput!
+}
+
+input UserUpdateWithoutCommentsInput {
+  name: StringFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutUserInput
+}
+
+input CommentUpdateWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutPostInput!
+}
+
+input CommentUpdateManyWithWhereWithoutPostInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyMutationInput!
+}
+
+input CommentScalarWhereInput {
+  AND: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+  id: StringFilter
+  content: StringFilter
+  postId: StringFilter
+  userId: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input CommentUpdateManyMutationInput {
+  content: StringFieldUpdateOperationsInput
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutUserInput!
+}
+
+input PostUpdateManyWithWhereWithoutUserInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyMutationInput!
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+  id: StringFilter
+  content: StringFilter
+  userId: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input PostUpdateManyMutationInput {
+  content: StringFieldUpdateOperationsInput
+}
+
+input CommentUpdateManyWithoutUserInput {
+  create: [CommentCreateWithoutUserInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: CommentCreateManyUserInputEnvelope
+  set: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [CommentScalarWhereInput!]
+}
+
+input CommentUpsertWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutUserInput!
+  create: CommentCreateWithoutUserInput!
+}
+
+input CommentUpdateWithoutUserInput {
+  content: StringFieldUpdateOperationsInput
+  post: PostUpdateOneRequiredWithoutCommentsInput
+}
+
+input PostUpdateOneRequiredWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  connectOrCreate: PostCreateOrConnectWithoutCommentsInput
+  upsert: PostUpsertWithoutCommentsInput
+  connect: PostWhereUniqueInput
+  update: PostUpdateWithoutCommentsInput
+}
+
+input PostUpsertWithoutCommentsInput {
+  update: PostUpdateWithoutCommentsInput!
+  create: PostCreateWithoutCommentsInput!
+}
+
+input PostUpdateWithoutCommentsInput {
+  content: StringFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutPostsInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  upsert: UserUpsertWithoutPostsInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutPostsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserUpdateWithoutPostsInput {
+  name: StringFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutUserInput
+}
+
+input CommentUpdateWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutUserInput!
+}
+
+input CommentUpdateManyWithWhereWithoutUserInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyMutationInput!
+}
+
+input PostCreateInput {
+  content: String!
+  user: UserCreateNestedOneWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
+}
+
+input PostUpdateInput {
+  content: StringFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutPostsInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input CommentCreateInput {
+  content: String!
+  post: PostCreateNestedOneWithoutCommentsInput!
+  user: UserCreateNestedOneWithoutCommentsInput
+}
+
+input CommentUpdateInput {
+  content: StringFieldUpdateOperationsInput
+  post: PostUpdateOneRequiredWithoutCommentsInput
+  user: UserUpdateOneWithoutCommentsInput
+}
