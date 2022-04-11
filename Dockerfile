@@ -47,7 +47,6 @@ RUN apt-get -qy install openssl
 # COPY package.json yarn.lock ./
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
 COPY --from=package /app/node_modules ./node_modules
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 

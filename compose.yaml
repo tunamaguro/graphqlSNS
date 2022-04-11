@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: runner
+      target: dev
     container_name: nest_graphql
     ports:
       - 3000:3000
@@ -12,7 +12,19 @@ services:
     working_dir: /app
     depends_on:
       - db
+      - migrate
     command: /bin/sh -c "while sleep 1000; do :; done"
+  # migrate:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: builder
+  #   container_name: migrate-db
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:password@db:5432/nestjs?schema=public
+  #   command: yarn prisma migrate deploy
   db:
     image: postgres
     container_name: postgres_prisma
